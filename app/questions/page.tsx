@@ -76,7 +76,7 @@ export default function Questions() {
     }
   }
 
-  const handleAnswerSelect = async (optionId: string, optionText: string) => {
+  const handleAnswerSelect = async (optionId: string) => {
     const currentQuestion = getQuestionById(currentQuestionId)
     if (!currentQuestion) return
 
@@ -208,7 +208,7 @@ export default function Questions() {
                 {currentQuestion.options.map((option) => (
                   <button
                     key={option.id}
-                    onClick={() => handleAnswerSelect(option.id, option.text)}
+                    onClick={() => handleAnswerSelect(option.id)}
                     className="w-full p-3 sm:p-4 text-left border border-gray-200 rounded-lg sm:rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-300 group bg-white/80 backdrop-blur-sm"
                   >
                     <div className="flex items-center justify-between">
