@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { saveResult } from '@/lib/supabase'
 import { questionFlow, getQuestionById, getResultByTitle } from '@/lib/questions'
 import { ArrowLeft, ArrowRight, CheckCircle, RefreshCw } from 'lucide-react'
@@ -9,7 +10,6 @@ export default function Questions() {
   const [stage, setStage] = useState<'nickname' | 'questions' | 'result'>('nickname')
   const [nickname, setNickname] = useState('')
   const [currentQuestionId, setCurrentQuestionId] = useState(questionFlow.startQuestionId)
-  const [answers, setAnswers] = useState<{[key: string]: string}>({})
   const [result, setResult] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [particles, setParticles] = useState<Array<{id: number, x: number, y: number, vx: number, vy: number}>>([])
@@ -83,12 +83,6 @@ export default function Questions() {
     const selectedOption = currentQuestion.options.find(opt => opt.id === optionId)
     if (!selectedOption) return
 
-    // 回答を保存
-    setAnswers(prev => ({
-      ...prev,
-      [currentQuestionId]: optionText
-    }))
-
     if (selectedOption.resultTitle) {
       // 結果に到達
       setResult(selectedOption.resultTitle)
@@ -115,7 +109,6 @@ export default function Questions() {
     setStage('nickname')
     setNickname('')
     setCurrentQuestionId(questionFlow.startQuestionId)
-    setAnswers({})
     setResult(null)
     setIsSubmitting(false)
   }
@@ -277,13 +270,13 @@ export default function Questions() {
                   <RefreshCw className="w-4 h-4 sm:w-5 sm:h-5" />
                   もう一度診断する
                 </button>
-                <a
+                <Link
                   href="/"
                   className="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2.5 sm:py-3 rounded-lg sm:rounded-xl transition-all duration-300 flex items-center justify-center gap-2 font-medium text-sm sm:text-base"
                 >
                   <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                   ホームに戻る
-                </a>
+                </Link>
               </div>
             </div>
           </div>
