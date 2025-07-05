@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { getResultsCount, getResults, supabase } from '@/lib/supabase'
+import { getResultsCount, getResults, deleteAllResults, subscribeToResults } from '@/lib/supabase'
 import Link from 'next/link'
 
 interface CountData {
@@ -91,12 +91,7 @@ export default function AdminPage() {
     if (window.confirm('本当に全ての結果をリセットしますか？この操作は取り消せません。')) {
       setIsResetting(true)
       try {
-        const { error } = await supabase
-          .from('results')
-          .delete()
-          .neq('id', '00000000-0000-0000-0000-000000000000')
-        
-        if (error) throw error
+        await deleteAllResults()
         
         await fetchData()
         alert('結果がリセットされました')
@@ -135,34 +130,17 @@ export default function AdminPage() {
       // 初期データの取得
       fetchData()
 
-      // 質問完了イベントを監視
-      const handleSurveyCompleted = () => {
+      // Supabaseリアルタイム更新の設定
+      const channel = subscribeToResults(() => {
+        console.log('Realtime update triggered - fetching new data')
         fetchData()
-      }
-
-      // localStorageの変更を監視
-      const handleStorageChange = () => {
-        const lastUpdate = localStorage.getItem('adminShouldRefresh')
-        if (lastUpdate) {
-          const timeDiff = Date.now() - parseInt(lastUpdate)
-          if (timeDiff < 5000) { // 5秒以内の更新のみ反応
-            fetchData()
-            localStorage.removeItem('adminShouldRefresh')
-          }
-        }
-      }
-
-      // イベントリスナーの追加
-      window.addEventListener('surveyCompleted', handleSurveyCompleted)
-      window.addEventListener('storage', handleStorageChange)
-      
-      // 定期的にlocalStorageをチェック
-      const storageInterval = setInterval(handleStorageChange, 1000)
+      })
 
       return () => {
-        clearInterval(storageInterval)
-        window.removeEventListener('surveyCompleted', handleSurveyCompleted)
-        window.removeEventListener('storage', handleStorageChange)
+        // サブスクリプションをクリーンアップ
+        if (channel) {
+          channel.unsubscribe()
+        }
       }
     }
   }, [isAuthenticated])

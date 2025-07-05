@@ -61,15 +61,6 @@ export default function Questions() {
 
   const progress = calculateProgress()
 
-  // 管理画面に更新を通知する関数
-  const notifyAdminUpdate = () => {
-    // カスタムイベントを発行
-    window.dispatchEvent(new CustomEvent('surveyCompleted'))
-    
-    // localStorage を使用して管理画面に通知
-    localStorage.setItem('adminShouldRefresh', Date.now().toString())
-  }
-
   const handleStartQuestions = () => {
     if (nickname.trim()) {
       setStage('questions')
@@ -92,8 +83,6 @@ export default function Questions() {
       setIsSubmitting(true)
       try {
                  await saveResult(nickname, selectedOption.resultTitle)
-        // 管理画面に更新を通知
-        notifyAdminUpdate()
       } catch (error) {
         console.error('結果の保存に失敗しました:', error)
       } finally {

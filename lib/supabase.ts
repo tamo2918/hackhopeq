@@ -3,7 +3,13 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://tseeelyrtzgidbjpcnmg.supabase.co'
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRzZWVlbHlydHpnaWRianBjbm1nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3MDM2NDMsImV4cCI6MjA2NzI3OTY0M30.eS3u4peTze-_c67mX3wfJFMNyEIW6LowHgmh6TD5qZg'
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  realtime: {
+    params: {
+      eventsPerSecond: 10,
+    },
+  },
+})
 
 // 結果の型定義
 export interface Result {
@@ -70,4 +76,34 @@ export async function getResultsCount() {
     title,
     count
   }))
+}
+
+// 全結果削除
+export async function deleteAllResults() {
+  const { error } = await supabase
+    .from('results')
+    .delete()
+    .neq('id', '00000000-0000-0000-0000-000000000000') // 存在しないIDで全削除
+
+  if (error) {
+    console.error('Error deleting results:', error)
+    throw error
+  }
+}
+
+// リアルタイム更新のためのサブスクリプション設定
+export function subscribeToResults(callback: () => void) {
+  const channel = supabase
+    .channel('results-changes')
+    .on(
+      'postgres_changes',
+      { event: '*', schema: 'public', table: 'results' },
+      (payload) => {
+        console.log('Database change detected:', payload)
+        callback()
+      }
+    )
+    .subscribe()
+
+  return channel
 } 
