@@ -61,9 +61,6 @@ export default function Home() {
               <p className="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed max-w-4xl mx-auto px-4">
                 簡単な質問に答えて、あなたの考える社会のタイプを診断しましょう
               </p>
-              <p className="text-base sm:text-lg text-gray-500 mt-4 max-w-3xl mx-auto px-4">
-                回答は統計として活用され、社会の多様な価値観を可視化します
-              </p>
             </div>
           </div>
 

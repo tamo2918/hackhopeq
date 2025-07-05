@@ -41,12 +41,17 @@ npm install
 
 ### 環境変数の設定
 
-`.env.local` ファイルを作成し、以下の環境変数を設定してください：
+**重要**: セキュリティのため、プロジェクトルートに `.env.local` ファイルを作成し、以下の環境変数を設定してください：
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_actual_anon_key
 ```
+
+**注意**: 
+- `.env.local` ファイルは `.gitignore` に含まれているため、Gitで管理されません
+- 実際の値は Supabase ダッシュボードの「Settings」→「API」から取得してください
+- 環境変数が設定されていない場合、アプリケーションは起動時にエラーが発生します
 
 ### Supabase テーブルの作成
 
