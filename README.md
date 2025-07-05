@@ -1,36 +1,170 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 社会のタイプ診断アプリ
 
-## Getting Started
+Next.js + TypeScript + Supabase を使用したログイン不要の選択式アンケートアプリです。
 
-First, run the development server:
+## 概要
+
+このアプリケーションは、難民・移民受け入れ問題に対する社会の様々な立場を分析し、それぞれの立場が導く社会像を体系的に整理した診断ツールです。
+
+### 主な機能
+
+- **質問フロー**: 選択式の質問に答えることで、8つの社会タイプのいずれかに分類
+- **結果表示**: 診断結果と詳細な説明を表示
+- **管理画面**: 回答データの詳細一覧と集計を表とグラフで可視化
+- **結果リセット**: 全結果のリセット機能
+- **管理画面アクセス**: 画面右上のボタンからアクセス可能
+
+### 社会タイプ
+
+1. 多文化共生社会
+2. 排除主義社会
+3. 受け入れ懸念社会
+4. 多文化意識社会
+5. 収容懸念社会
+6. 孤立社会
+7. 人道的懸念社会
+8. 対立型社会
+
+## セットアップ
+
+### 前提条件
+
+- Node.js (v18以上)
+- npm
+- Supabase プロジェクト
+
+### インストール
+
+```bash
+npm install
+```
+
+### 環境変数の設定
+
+`.env.local` ファイルを作成し、以下の環境変数を設定してください：
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### Supabase テーブルの作成
+
+**重要**: Supabase のダッシュボードにアクセスし、SQL Editor で以下のSQLを実行してテーブルを作成してください：
+
+```sql
+CREATE TABLE IF NOT EXISTS results (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  nickname TEXT NOT NULL,
+  result_title TEXT NOT NULL,
+  submitted_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
+```
+
+### 開発サーバーの起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで `http://localhost:3000` にアクセスしてアプリケーションを確認してください。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 使用方法
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 一般ユーザー
 
-## Learn More
+1. **診断を受ける**: ホームページから「診断を開始」をクリック
+2. **ニックネーム入力**: 統計用のニックネームを入力
+3. **質問に回答**: 選択式の質問に順番に回答
+4. **結果確認**: 診断結果とその説明を確認
+5. **管理画面**: 画面右上の「管理画面」ボタンで回答データを確認
 
-To learn more about Next.js, take a look at the following resources:
+### 管理画面
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+管理画面では以下の情報を確認できます：
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **回答一覧**: ニックネーム、診断結果、回答日時の一覧
+- **社会タイプ別集計**: 各社会タイプの回答数と割合
+- **グラフ表示**: 回答数の棒グラフ
+- **結果リセット**: 全回答データの削除機能
 
-## Deploy on Vercel
+## 管理画面の機能
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **誰でもアクセス可能**: 認証不要でアクセス可能
+- **詳細表示**: ニックネーム別の回答一覧
+- **集計表示**: 社会タイプ別の統計情報
+- **グラフ表示**: 視覚的な結果表示
+- **自動更新**: 5秒ごとのリアルタイム更新
+- **結果リセット**: 全回答データの削除機能
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## アクセス方法
+
+- **ホームページ**: `http://localhost:3000`
+- **診断ページ**: `http://localhost:3000/questions`
+- **管理画面**: `http://localhost:3000/admin`（画面右上のボタンからもアクセス可能）
+
+## 技術スタック
+
+- **フロントエンド**: Next.js 15, TypeScript, Tailwind CSS
+- **バックエンド**: Supabase
+- **グラフ描画**: Recharts
+- **その他**: UUID生成
+
+## ファイル構造
+
+```
+├── app/
+│   ├── page.tsx          # ホームページ（管理画面ボタン付き）
+│   ├── questions/        # 診断ページ（管理画面ボタン付き）
+│   │   └── page.tsx
+│   └── admin/            # 管理画面（認証なし）
+│       └── page.tsx
+├── lib/
+│   ├── supabase.ts       # Supabase設定
+│   └── questions.ts      # 質問フロー定義
+└── README.md
+```
+
+## 表示項目
+
+### 管理画面の表示内容
+
+1. **回答一覧**
+   - ニックネーム
+   - 診断結果（社会タイプ）
+   - 回答日時
+
+2. **社会タイプ別集計**
+   - 各社会タイプの回答数
+   - 割合（%）
+
+3. **グラフ表示**
+   - 棒グラフによる視覚的表示
+
+## 注意事項
+
+- 本アプリケーションは完全にログイン不要で使用できます
+- 管理画面も認証なしでアクセス可能です
+- 回答データはニックネームと結果のみが保存されます
+- 質問の選択履歴は保存されません
+- 管理画面は5秒ごとに自動更新されます
+
+## トラブルシューティング
+
+### 文字が見えない問題
+- 文字色を明確に設定済み（text-gray-900等）
+- 背景色とのコントラストを確保
+
+### データベース接続エラー
+- Supabase の URL と API キーを確認
+- テーブルが作成されているか確認
+- Supabase プロジェクトのステータスを確認
+
+### 管理画面にアクセスできない
+- 画面右上の「管理画面」ボタンをクリック
+- 直接 `/admin` にアクセス
+- ブラウザの JavaScript が有効になっているか確認
+
+## ライセンス
+
+このプロジェクトは MIT ライセンスの下で公開されています。
