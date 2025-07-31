@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { saveResult } from '@/lib/supabase'
 import { questionFlow, getQuestionById, getResultByTitle } from '@/lib/questions'
-import { ArrowLeft, ArrowRight, CheckCircle, RefreshCw } from 'lucide-react'
+import { ArrowLeft, ArrowRight, RefreshCw } from 'lucide-react'
 
 export default function Questions() {
   const [stage, setStage] = useState<'nickname' | 'questions' | 'result'>('nickname')
