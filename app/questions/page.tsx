@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { saveResult } from '@/lib/supabase'
 import { questionFlow, getQuestionById, getResultByTitle } from '@/lib/questions'
 import { ArrowLeft, ArrowRight, CheckCircle, RefreshCw } from 'lucide-react'
@@ -145,10 +146,16 @@ export default function Questions() {
             <div className="backdrop-blur-sm bg-white/80 rounded-2xl sm:rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-2xl">
               <div className="text-center mb-4 sm:mb-6">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-600"></div>
+                  <Image
+                    src="/president.png"
+                    alt="hackhope大統領"
+                    width={64}
+                    height={64}
+                    className="w-full h-full"
+                  />
                 </div>
                 <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
-                  社会診断テスト
+                  国育成ゲーム
                 </h1>
                 <p className="text-sm sm:text-base text-gray-600">
                   あなたのニックネームを入力してください
@@ -183,10 +190,16 @@ export default function Questions() {
             <div className="backdrop-blur-sm bg-white/80 rounded-2xl sm:rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-2xl">
               <div className="text-center mb-4 sm:mb-6">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gray-600"></div>
+                  <Image
+                    src="/president.png"
+                    alt="hackhope大統領"
+                    width={48}
+                    height={48}
+                    className="w-full h-full"
+                  />
                 </div>
                 <div className="text-xs sm:text-sm text-gray-600 mb-2">
-                  {nickname}さんの診断
+                  hackhope大統領
                 </div>
                 <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight px-2 sm:px-0">
                   {currentQuestion.text}
@@ -228,10 +241,16 @@ export default function Questions() {
             <div className="backdrop-blur-sm bg-white/80 rounded-2xl sm:rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-2xl">
               <div className="text-center mb-4 sm:mb-6">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                  <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-gray-600" />
+                  <Image
+                    src={`/${resultInfo.imageFile}`}
+                    alt={resultInfo.title}
+                    width={64}
+                    height={64}
+                    className="w-full h-full"
+                  />
                 </div>
                 <div className="text-xs sm:text-sm text-gray-600 mb-2">
-                  {nickname}さんの診断結果
+                  hackhope大統領の国家運営結果
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight px-2 sm:px-0">
                   {resultInfo.title}

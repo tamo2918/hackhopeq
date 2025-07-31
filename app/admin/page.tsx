@@ -171,9 +171,7 @@ export default function AdminPage() {
           <div className="relative max-w-md w-full mx-auto">
             <div className="border-2 border-gray-200 rounded-3xl bg-white shadow-xl">
               <div className="relative p-8 sm:p-12 text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 bg-black rounded-full flex items-center justify-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 border-2 border-white rounded-full"></div>
-                </div>
+
                 <h1 className="text-2xl sm:text-3xl font-bold text-black mb-4">管理画面</h1>
                 <p className="text-gray-600 mb-6 text-sm sm:text-base">
                   管理画面にアクセスするにはパスワードが必要です
@@ -280,9 +278,7 @@ export default function AdminPage() {
           <div className="relative max-w-lg mx-auto p-4">
             <div className="border-2 border-red-300 bg-red-50 rounded-3xl shadow-xl">
               <div className="relative p-6 sm:p-8 text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 bg-red-500 rounded-full flex items-center justify-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 border-2 border-white rounded-full"></div>
-                </div>
+
                 <h2 className="text-xl sm:text-2xl font-bold text-red-700 mb-4">エラーが発生しました</h2>
                 <p className="text-red-600 mb-6 text-sm sm:text-base">{error}</p>
                 <button
@@ -348,9 +344,7 @@ export default function AdminPage() {
               <div className="group relative">
                 <div className="border-2 border-gray-200 rounded-3xl bg-white shadow-xl group-hover:shadow-2xl transition-all duration-300">
                   <div className="relative p-6 sm:p-8 text-center">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-black rounded-full flex items-center justify-center">
-                      <div className="w-6 h-6 sm:w-8 sm:h-8 border-2 border-white rounded-full"></div>
-                    </div>
+
                     <div className="text-3xl sm:text-4xl font-bold text-black mb-2">
                       {totalCount}
                     </div>
@@ -362,9 +356,7 @@ export default function AdminPage() {
               <div className="group relative">
                 <div className="border-2 border-gray-200 rounded-3xl bg-white shadow-xl group-hover:shadow-2xl transition-all duration-300">
                   <div className="relative p-6 sm:p-8 text-center">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-black rounded-full flex items-center justify-center">
-                      <div className="w-6 h-6 sm:w-8 sm:h-8 border-2 border-white rounded-full"></div>
-                    </div>
+
                     <div className="text-3xl sm:text-4xl font-bold text-black mb-2">
                       {countData.length}
                     </div>
@@ -376,9 +368,7 @@ export default function AdminPage() {
               <div className="group relative">
                 <div className="border-2 border-gray-200 rounded-3xl bg-white shadow-xl group-hover:shadow-2xl transition-all duration-300">
                   <div className="relative p-6 sm:p-8 text-center">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-black rounded-full flex items-center justify-center">
-                      <div className="w-6 h-6 sm:w-8 sm:h-8 border-2 border-white rounded-full"></div>
-                    </div>
+
                     <div className="text-xl sm:text-2xl font-bold text-black mb-2">
                       リアルタイム
                     </div>
@@ -415,9 +405,7 @@ export default function AdminPage() {
             <div className="relative">
               <div className="border-2 border-gray-200 rounded-3xl bg-white shadow-xl">
                 <div className="relative p-12 sm:p-20 text-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 bg-black rounded-full flex items-center justify-center">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 border-2 border-white rounded-full"></div>
-                  </div>
+
                   <h2 className="text-2xl sm:text-3xl font-bold text-black mb-4">まだ回答がありません</h2>
                   <p className="text-gray-600 text-base sm:text-lg">診断が完了すると、ここに結果が表示されます</p>
                 </div>
@@ -430,9 +418,7 @@ export default function AdminPage() {
                 <div className="border-2 border-gray-200 rounded-3xl bg-white shadow-xl">
                   <div className="relative p-6 sm:p-8">
                     <div className="flex items-center mb-4 sm:mb-6">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 mr-3 sm:mr-4 bg-black rounded-full flex items-center justify-center">
-                        <div className="w-4 h-4 sm:w-5 sm:h-5 border border-white rounded-full"></div>
-                      </div>
+
                       <h2 className="text-xl sm:text-2xl font-bold text-black">
                         回答一覧（ニックネーム別）
                       </h2>
@@ -490,9 +476,7 @@ export default function AdminPage() {
                 <div className="border-2 border-gray-200 rounded-3xl bg-white shadow-xl">
                   <div className="relative p-6 sm:p-8">
                     <div className="flex items-center mb-4 sm:mb-6">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 mr-3 sm:mr-4 bg-black rounded-full flex items-center justify-center">
-                        <div className="w-4 h-4 sm:w-5 sm:h-5 border border-white rounded-full"></div>
-                      </div>
+
                       <h2 className="text-xl sm:text-2xl font-bold text-black">
                         社会タイプ別集計
                       </h2>
