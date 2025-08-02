@@ -26,7 +26,7 @@ export const questionFlow = {
   questions: [
     {
       id: 'q0',
-      text: 'HackHope国は最初に難民をどう扱いますか？',
+      text: '大統領は最初に難民をどう扱いますか？',
       options: [
         { id: 'q0_option1', text: '入管施設に収容する', nextQuestionId: 'q1' },
         { id: 'q0_option2', text: '追い返す', nextQuestionId: 'q2' },
@@ -35,7 +35,7 @@ export const questionFlow = {
     },
     {
       id: 'q1',
-      text: '収容された Itanzi 難民はどうする？',
+      text: '収容された難民はどうする？',
       options: [
         { id: 'q1_option1', text: '難民申請をする', nextQuestionId: 'q1a' },
         { id: 'q1_option2', text: '無期限に収容される', nextQuestionId: 'q1b' }
@@ -59,7 +59,7 @@ export const questionFlow = {
     },
     {
       id: 'q2',
-      text: '追い返された Itanzi 難民はどう行動する？',
+      text: '追い返された難民はどう行動する？',
       options: [
         { id: 'q2_option1', text: '強制送還される', nextQuestionId: 'q2a' },
         { id: 'q2_option2', text: '国内に留まり続ける', nextQuestionId: 'q2b' }
