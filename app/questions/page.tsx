@@ -191,15 +191,15 @@ export default function Questions() {
               <div className="text-center mb-4 sm:mb-6">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <Image
-                    src="/president.png"
-                    alt="hackhope大統領"
+                    src={currentQuestionId === 'q1' || currentQuestionId === 'q2' ? "/refugees.png" : "/president.png"}
+                    alt={currentQuestionId === 'q1' || currentQuestionId === 'q2' ? "難民" : "hackhope大統領"}
                     width={48}
                     height={48}
                     className="w-full h-full"
                   />
                 </div>
                 <div className="text-xs sm:text-sm text-gray-600 mb-2">
-                  大統領
+                  {currentQuestionId === 'q1' || currentQuestionId === 'q2' ? '難民' : '大統領'}
                 </div>
                 <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight px-2 sm:px-0">
                   {currentQuestion.text}
