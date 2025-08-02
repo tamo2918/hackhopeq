@@ -199,7 +199,7 @@ export default function Questions() {
                   />
                 </div>
                 <div className="text-xs sm:text-sm text-gray-600 mb-2">
-                  hackhope大統領
+                  大統領
                 </div>
                 <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight px-2 sm:px-0">
                   {currentQuestion.text}
@@ -250,7 +250,7 @@ export default function Questions() {
                   />
                 </div>
                 <div className="text-xs sm:text-sm text-gray-600 mb-2">
-                  hackhope大統領の国家運営結果
+                  大統領の国家運営結果
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight px-2 sm:px-0">
                   {resultInfo.title}
