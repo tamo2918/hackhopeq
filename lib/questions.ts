@@ -30,7 +30,7 @@ export const questionFlow = {
       options: [
         { id: 'q0_option1', text: '入管施設に収容する', nextQuestionId: 'q1' },
         { id: 'q0_option2', text: '追い返す', nextQuestionId: 'q2' },
-        { id: 'q0_option3', text: '受け入れる', nextQuestionId: 'q3' }
+        { id: 'q0_option3', text: '難民として認定する', nextQuestionId: 'q3' }
       ]
     },
     {
