@@ -85,8 +85,8 @@ export const questionFlow = {
       id: 'q3',
       text: '受け入れ後、難民の社会適応は？',
       options: [
-        { id: 'q3_option1', text: 'H 国になじめない', nextQuestionId: 'q3a' },
-        { id: 'q3_option2', text: 'H 国で仕事をする', nextQuestionId: 'q3b' }
+        { id: 'q3_option1', text: '国になじめない', nextQuestionId: 'q3a' },
+        { id: 'q3_option2', text: '国で仕事をする', nextQuestionId: 'q3b' }
       ]
     },
     {
